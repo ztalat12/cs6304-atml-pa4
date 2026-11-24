@@ -1,0 +1,22 @@
+{
+ "scales_for_2bit": {
+  "mean_token_KL": 1.592096123204101e-05,
+  "top1_agreement": 0.9970703125,
+  "max_abs_logit_diff": 0.212890625
+ },
+ "scales_for_3bit": {
+  "mean_token_KL": 1.656733002164401e-05,
+  "top1_agreement": 0.99609375,
+  "max_abs_logit_diff": 0.23895263671875
+ },
+ "scales_for_4bit": {
+  "mean_token_KL": 1.6165793567779474e-05,
+  "top1_agreement": 0.9970703125,
+  "max_abs_logit_diff": 0.171875
+ },
+ "scales_for_8bit": {
+  "mean_token_KL": 1.6482046703458764e-05,
+  "top1_agreement": 0.99609375,
+  "max_abs_logit_diff": 0.2578125
+ }
+}

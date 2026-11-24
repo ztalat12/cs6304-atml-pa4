@@ -1,0 +1,386 @@
+[
+ {
+  "label": "transformers pinned version",
+  "intended": "4.57.1",
+  "actual": "4.57.1",
+  "ok": true
+ },
+ {
+  "label": "huggingface_hub pinned version",
+  "intended": "0.36.2",
+  "actual": "0.36.2",
+  "ok": true
+ },
+ {
+  "label": "base (not instruct) checkpoint",
+  "intended": "Qwen/Qwen2.5-1.5B",
+  "actual": "Qwen/Qwen2.5-1.5B",
+  "ok": true
+ },
+ {
+  "label": "attention backend",
+  "intended": "sdpa",
+  "actual": "sdpa",
+  "ok": true
+ },
+ {
+  "label": "calibration manifest: 128 sequences, every one 512 tokens",
+  "intended": "(128, [512])",
+  "actual": "(128, [512])",
+  "ok": true
+ },
+ {
+  "label": "development manifest: 32 sequences, every one 512 tokens",
+  "intended": "(32, [512])",
+  "actual": "(32, [512])",
+  "ok": true
+ },
+ {
+  "label": "calibration and development documents are disjoint",
+  "intended": "0",
+  "actual": "0",
+  "ok": true
+ },
+ {
+  "label": "WikiText-2 scored tokens",
+  "intended": "50000",
+  "actual": "50000",
+  "ok": true
+ },
+ {
+  "label": "C4-validation scored tokens",
+  "intended": "50000",
+  "actual": "50000",
+  "ok": true
+ },
+ {
+  "label": "no window longer than 512",
+  "intended": "True",
+  "actual": "True",
+  "ok": true
+ },
+ {
+  "label": "HellaSwag manifest: 2000 distinct validation IDs",
+  "intended": "2000",
+  "actual": "2000",
+  "ok": true
+ },
+ {
+  "label": "eligible matrices = 7 per block x n_layers",
+  "intended": "196",
+  "actual": "196",
+  "ok": true
+ },
+ {
+  "label": "lm_head shares storage with embed_tokens (tied => counted once)",
+  "intended": "True",
+  "actual": "True",
+  "ok": true
+ },
+ {
+  "label": "embeddings appear once in the unique-parameter total",
+  "intended": "total == eligible + non-eligible, embeddings counted once",
+  "actual": "total=1,543,714,304  eligible=1,310,195,712  non-eligible=233,518,592  (embedding 233,373,696)",
+  "ok": true
+ },
+ {
+  "label": "every eligible matrix has in_features divisible by the group size 128 (and by 4 for 2:4)",
+  "intended": "True",
+  "actual": "True",
+  "ok": true
+ },
+ {
+  "label": "block-by-block runner reproduces the full forward pass",
+  "intended": "relative difference < 1e-2 (FP16)",
+  "actual": "1.18e-03",
+  "ok": true
+ },
+ {
+  "label": "baseline perplexity is finite on both suites",
+  "intended": "True",
+  "actual": "True",
+  "ok": true
+ },
+ {
+  "label": "scored tokens per suite",
+  "intended": "50000",
+  "actual": "(50000, 50000)",
+  "ok": true
+ },
+ {
+  "label": "baseline layer-output error is zero (W_eff == W)",
+  "intended": "0.0",
+  "actual": "0.0",
+  "ok": true
+ },
+ {
+  "label": "HellaSwag accuracy above 25% chance (zero-shot base 1.5B is typically ~0.5 acc / ~0.65 acc_norm)",
+  "intended": "> 0.25",
+  "actual": "acc=0.5165 acc_norm=0.6835",
+  "ok": true
+ },
+ {
+  "label": "P1 s=0.25: achieved eligible sparsity",
+  "intended": "0.25",
+  "actual": "0.25",
+  "ok": true
+ },
+ {
+  "label": "P1 s=0.5: achieved eligible sparsity",
+  "intended": "0.5",
+  "actual": "0.5",
+  "ok": true
+ },
+ {
+  "label": "P1 s=0.75: achieved eligible sparsity",
+  "intended": "0.75",
+  "actual": "0.75",
+  "ok": true
+ },
+ {
+  "label": "P2 s=0.25: achieved eligible sparsity",
+  "intended": "0.25",
+  "actual": "0.25",
+  "ok": true
+ },
+ {
+  "label": "P2 s=0.5: achieved eligible sparsity",
+  "intended": "0.5",
+  "actual": "0.5",
+  "ok": true
+ },
+ {
+  "label": "P2 s=0.75: achieved eligible sparsity",
+  "intended": "0.75",
+  "actual": "0.75",
+  "ok": true
+ },
+ {
+  "label": "model restored after probes (calibration NLL unchanged)",
+  "intended": "3.019",
+  "actual": "3.019",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 owl_lam0.04: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "655097856",
+  "actual": "655097856",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 owl_lam0.04: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.442, 0.522]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 owl_lam0.08: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "655097856",
+  "actual": "655097856",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 owl_lam0.08: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.384, 0.544]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 probe_lam0.04: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "655097856",
+  "actual": "655097856",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 probe_lam0.04: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.460, 0.540]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 probe_lam0.08: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "655097856",
+  "actual": "655097856",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5 probe_lam0.08: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.420, 0.580]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 owl_lam0.04: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "982646784",
+  "actual": "982646784",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 owl_lam0.04: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.692, 0.772]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 owl_lam0.08: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "982646784",
+  "actual": "982646784",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 owl_lam0.08: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.634, 0.794]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 probe_lam0.04: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "982646784",
+  "actual": "982646784",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 probe_lam0.04: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.710, 0.790]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 probe_lam0.08: zeroed eligible weights equal the P1/P2 budget",
+  "intended": "982646784",
+  "actual": "982646784",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75 probe_lam0.08: every block sparsity inside [0.10, 0.85]",
+  "intended": "[0.10, 0.85]",
+  "actual": "[0.670, 0.830]",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.5: nonzeros equal P2 at matched sparsity",
+  "intended": "655097856",
+  "actual": "655097856",
+  "ok": true
+ },
+ {
+  "label": "P3 S=0.75: nonzeros equal P2 at matched sparsity",
+  "intended": "327548928",
+  "actual": "327548928",
+  "ok": true
+ },
+ {
+  "label": "2:4 achieved sparsity equals 50%",
+  "intended": "0.5",
+  "actual": "0.5",
+  "ok": true
+ },
+ {
+  "label": "mask_24 keeps exactly 2 of every 4 consecutive input weights (function test on block-0 q_proj)",
+  "intended": "2",
+  "actual": "2",
+  "ok": true
+ },
+ {
+  "label": "AWQ search never worse than plain quantization on its calibration objective (alpha=0 is in the grid)",
+  "intended": "0",
+  "actual": "0",
+  "ok": true
+ },
+ {
+  "label": "2-bit AWQ scales folded WITHOUT rounding reproduce the unchanged model (FP16 rounding only)",
+  "intended": "KL < 1e-3, top-1 agreement > 0.99",
+  "actual": "KL=1.59e-05, top1=0.9971, max|dlogit|=0.213",
+  "ok": true
+ },
+ {
+  "label": "3-bit AWQ scales folded WITHOUT rounding reproduce the unchanged model (FP16 rounding only)",
+  "intended": "KL < 1e-3, top-1 agreement > 0.99",
+  "actual": "KL=1.66e-05, top1=0.9961, max|dlogit|=0.239",
+  "ok": true
+ },
+ {
+  "label": "4-bit AWQ scales folded WITHOUT rounding reproduce the unchanged model (FP16 rounding only)",
+  "intended": "KL < 1e-3, top-1 agreement > 0.99",
+  "actual": "KL=1.62e-05, top1=0.9971, max|dlogit|=0.172",
+  "ok": true
+ },
+ {
+  "label": "8-bit AWQ scales folded WITHOUT rounding reproduce the unchanged model (FP16 rounding only)",
+  "intended": "KL < 1e-3, top-1 agreement > 0.99",
+  "actual": "KL=1.65e-05, top1=0.9961, max|dlogit|=0.258",
+  "ok": true
+ },
+ {
+  "label": "8-bit pack/unpack round-trip exact and bytes == formula",
+  "intended": "2414592",
+  "actual": "2414592",
+  "ok": true
+ },
+ {
+  "label": "8-bit: at most 2^b distinct codes",
+  "intended": "<= 256",
+  "actual": "256",
+  "ok": true
+ },
+ {
+  "label": "4-bit pack/unpack round-trip exact and bytes == formula",
+  "intended": "1234944",
+  "actual": "1234944",
+  "ok": true
+ },
+ {
+  "label": "4-bit: at most 2^b distinct codes",
+  "intended": "<= 16",
+  "actual": "16",
+  "ok": true
+ },
+ {
+  "label": "3-bit pack/unpack round-trip exact and bytes == formula",
+  "intended": "940032",
+  "actual": "940032",
+  "ok": true
+ },
+ {
+  "label": "3-bit: at most 2^b distinct codes",
+  "intended": "<= 8",
+  "actual": "8",
+  "ok": true
+ },
+ {
+  "label": "2-bit pack/unpack round-trip exact and bytes == formula",
+  "intended": "645120",
+  "actual": "645120",
+  "ok": true
+ },
+ {
+  "label": "2-bit: at most 2^b distinct codes",
+  "intended": "<= 4",
+  "actual": "4",
+  "ok": true
+ },
+ {
+  "label": "Q3 INT4-budget probe_dnll_dp: packed bytes do not exceed the Q2 uniform budget",
+  "intended": "<= 1,152,928,768",
+  "actual": "1,152,928,768",
+  "ok": true
+ },
+ {
+  "label": "Q3 INT4-budget awq_proxy_dp: packed bytes do not exceed the Q2 uniform budget",
+  "intended": "<= 1,152,928,768",
+  "actual": "1,152,928,768",
+  "ok": true
+ },
+ {
+  "label": "Q3 INT3-budget probe_dnll_dp: packed bytes do not exceed the Q2 uniform budget",
+  "intended": "<= 989,154,304",
+  "actual": "989,154,304",
+  "ok": true
+ },
+ {
+  "label": "Q3 INT3-budget awq_proxy_dp: packed bytes do not exceed the Q2 uniform budget",
+  "intended": "<= 989,154,304",
+  "actual": "989,154,304",
+  "ok": true
+ }
+]
