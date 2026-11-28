@@ -1,11 +1,20 @@
 # Task 1 — Model compression of Qwen2.5-1.5B (base)
 
-Notebook: [`atmt-pa4-task1.ipynb`](atmt-pa4-task1.ipynb), run on Kaggle (`atmt-pa4-task1`), Tesla T4, FP16, SDPA,
+Notebook: [`atml-pa4-task1.ipynb`](atml-pa4-task1.ipynb) (Kaggle: `atml-pa4-task1`).
+
+| Run | Kaggle version | Notebook | Results |
+|---|---|---|---|
+| v1 — first full run | 2 | commit `1b1bf4f` (then named `atmt-pa4-task1.ipynb`) | [`results_v1/`](results_v1/) |
+| v2 — per-group Q3 + memory fix | 3 | current [`atml-pa4-task1.ipynb`](atml-pa4-task1.ipynb) | `results_v2/` (running) |
+
+## v1 results
+
+Run on Kaggle, Tesla T4, FP16, SDPA,
 transformers 4.57.1, huggingface_hub 0.36.2, torch 2.11.0, model revision `8faed761`, seed 6304. Total run time 2.7 h.
-**64/64 built-in intended-vs-actual checks passed** ([`results/checks.json`](results/checks.json)).
+**64/64 built-in intended-vs-actual checks passed** ([`results_v1/checks.json`](results_v1/checks.json)).
 
 Data: the official `atml-pa4-datasets` manifests were not available, so the notebook builds equivalent fixed selections
-with seed 6304 and saves every ID and token window in [`results/manifests/manifests.json`](results/manifests/manifests.json):
+with seed 6304 and saves every ID and token window in [`results_v1/manifests/manifests.json`](results_v1/manifests/manifests.json):
 128×512 C4-train calibration windows, 32 disjoint dev windows, 50,000 scored tokens each of WikiText-2 test and C4
 validation, and 2,000 HellaSwag validation rows (IDs are row positions, because the `ind` field repeats).
 
@@ -32,10 +41,10 @@ validation, and 2,000 HellaSwag validation rows (IDs are row positions, because 
 | Q3 mixed, INT4 budget | all blocks 4-bit | 654 | 12.87 | 17.54 | 0.678 (2000) |
 | Q3 mixed, INT3 budget | all blocks 3-bit | 498 | 18.08 | 23.29 | 0.608 (2000) |
 
-Full table (incl. HellaSwag acc, calibration ΔNLL, dev NLL, layer error, timing): [`results/summary_all_conditions.csv`](results/summary_all_conditions.csv).
+Full table (incl. HellaSwag acc, calibration ΔNLL, dev NLL, layer error, timing): [`results_v1/summary_all_conditions.csv`](results_v1/summary_all_conditions.csv).
 Packed bytes include FP16 scales + uint8 zero-points per 128-group; the sparse format is 1 mask bit per weight + 16 bits per nonzero.
 
-## Paired 95% bootstrap intervals ([`results/paired_bootstrap.csv`](results/paired_bootstrap.csv))
+## Paired 95% bootstrap intervals ([`results_v1/paired_bootstrap.csv`](results_v1/paired_bootstrap.csv))
 
 | Comparison | ΔPPL WikiText-2 [CI] | ΔPPL C4 [CI] | Δacc_norm, pp [CI] |
 |---|---|---|---|
@@ -48,7 +57,7 @@ Packed bytes include FP16 scales + uint8 zero-points per 128-group; the sparse f
 | Q3 − Q2 (INT4 and INT3) | 0 (identical allocation) | 0 | 0 |
 
 ## Figures
-`results/figures/`: pruning quality vs sparsity (fig1), quantization quality vs packed MB (fig2), P3 sensitivity + allocation (fig3),
+`results_v1/figures/`: pruning quality vs sparsity (fig1), quantization quality vs packed MB (fig2), P3 sensitivity + allocation (fig3),
 Q3 sensitivity + allocation (fig4), calibration-to-held-out transfer (fig5), Wanda/magnitude mask overlap (fig6), layer-error maps (fig7).
 
 ## Known issues in this run
@@ -61,5 +70,5 @@ Q3 sensitivity + allocation (fig4), calibration-to-held-out transfer (fig5), Wan
 * Latency: all conditions use dense FP16 kernels (prefill-2048 ≈ 850–930 ms, decode ≈ 37 ms/token). Storage savings are packed-format
   estimates, not measured speedups.
 
-Raw per-example scores are in `results/per_example/`, per-condition records in `results/results/`, the stdout of the run in
-[`results/run_log.txt`](results/run_log.txt), and the AWQ scales/alphas in `results/awq_search.pt`.
+Raw per-example scores are in `results_v1/per_example/`, per-condition records in `results_v1/results/`, the stdout of the run in
+[`results_v1/run_log.txt`](results_v1/run_log.txt), and the AWQ scales/alphas in `results_v1/awq_search.pt`.
